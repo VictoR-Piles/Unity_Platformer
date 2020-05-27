@@ -18,6 +18,7 @@ public class Player_controler : MonoBehaviour
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	private bool jump;														// Determinara si el Player esta en el aire o no
+	private bool doubleJump;												// Determina si se puede realizar un doble salto o no
 
 	// ==================== START ====================
 	void Start()
@@ -31,10 +32,24 @@ public class Player_controler : MonoBehaviour
 	{
 		anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));	// Accede al animador y cambia el Speed por la velocidad X actual
 		anim.SetBool("Grounded", grounded);
-		
-		if (Input.GetKeyDown(KeyCode.Space) && grounded)
+
+		if (grounded)
 		{
-			jump = true;													// Determina que la tecla ESPACIO ha sido pulsada y el Player debe saltar
+			doubleJump = true;												// Permite realizar el salto de precaucion
+		}
+		
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			if (grounded)
+			{
+				jump = true;												// Determina que la tecla ESPACIO ha sido pulsada y el Player debe saltar
+				doubleJump = true;											// Al haber ralizado solo un salto, podemos realizar el doble salto
+			}
+			else if (doubleJump)
+			{
+				jump = true;												// Permite realizar el segundo salto
+				doubleJump = false;
+			}
 		}
 	}
 

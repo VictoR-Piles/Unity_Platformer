@@ -79,6 +79,7 @@ public class Player_controler : MonoBehaviour
 
 	void OnBecameInvisible()
 	{
-		transform.position = new Vector3(0, 0, 0);
+		transform.position = new Vector3(-8, .5f, 0);				// Crea un 'checkpoint' y envia al Player al chechpoint si se sale de los límites de la camara
+		rb2d.velocity = new Vector2(0, 0);
 	}
 }

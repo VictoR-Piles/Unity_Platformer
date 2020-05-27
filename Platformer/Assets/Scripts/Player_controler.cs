@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+/**
+ * Permite el movimiento del Player por el escenario,
+ * ademas sincroniza algunos movimientos con el ani-
+ * mador y calcula algunas fisicas
+ */
 public class Player_controler : MonoBehaviour
 {
 	public float speed = 75f;												// Velocidad por defecto (se puede modificar desde Unity)
@@ -24,7 +29,7 @@ public class Player_controler : MonoBehaviour
 	// ==================== UPDATE ====================
 	void Update()
 	{
-		anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));					// Accede al animador y cambia el Speed por la velocidad X actual
+		anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));	// Accede al animador y cambia el Speed por la velocidad X actual
 		anim.SetBool("Grounded", grounded);
 		
 		if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -48,11 +53,11 @@ public class Player_controler : MonoBehaviour
 
 		if (h > 0.1f)
 		{
-			transform.localScale = new Vector3(1f, 1f, 1f);					// Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
+			transform.localScale = new Vector3(1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
 		}
 		if (h < -0.1f)
 		{
-			transform.localScale = new Vector3(-1f, 1f, 1f);				// Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
+			transform.localScale = new Vector3(-1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
 		}
 		
 		if (rb2d.velocity.x > maxSpeed)

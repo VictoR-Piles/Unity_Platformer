@@ -11,14 +11,25 @@ using UnityEngine.Diagnostics;
 public class Player_checkGround : MonoBehaviour
 {
 	private Player_controler playerControler;
+	private Rigidbody2D rb2d;
 	
 	// ==================== START ====================
 	void Start()
 	{
-		playerControler = GetComponentInParent<Player_controler>();		// Permite acceder a el script Player_controler del objeto padre Player
+		playerControler = GetComponentInParent<Player_controler>();		// Permite acceder a propiedades del objeto padre (Player)
+		rb2d = GetComponentInParent<Rigidbody2D>();
 	}
 	
 	// ==================== OnCollision ====================
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.tag == "Platform")
+		{
+			rb2d.velocity = new Vector3(0f, 0f, 0f);
+			playerControler.transform.parent = col.transform;			// Asigna la plataforma como el objeto padre de Player, para arreglar el bug que impedia saltar en las plataformas moviles
+			playerControler.grounded = true;							// Comprueba si las piernas del Player estan colisionando con algun objeto que tiene el tag 'Platform'
+		}
+	}
 	void OnCollisionStay2D(Collision2D col)
 	{
 		if (col.gameObject.tag == "Ground")
@@ -27,6 +38,7 @@ public class Player_checkGround : MonoBehaviour
 		}
 		if (col.gameObject.tag == "Platform")
 		{
+			playerControler.transform.parent = col.transform;			// Asigna la plataforma como el objeto padre de Player, para arreglar el bug que impedia saltar en las plataformas moviles
 			playerControler.grounded = true;							// Comprueba si las piernas del Player estan colisionando con algun objeto que tiene el tag 'Platform'
 		}
 	}
@@ -38,6 +50,7 @@ public class Player_checkGround : MonoBehaviour
 		}
 		if (col.gameObject.tag == "Platform")
 		{
+			playerControler.transform.parent = null;					// Quita a la plataforma como objeto padre del Player
 			playerControler.grounded = false;							// Comprueba si las piernas del Player NO estan colisionando con ningun objeto que tiene el tag 'Platform'
 		}
 	}

@@ -12,7 +12,7 @@ public class Player_controler : MonoBehaviour
 
 	private Rigidbody2D rb2d;
 	private Animator anim;
-	private bool jump;														// Determinará si el Player esta en el aire o no
+	private bool jump;														// Determinara si el Player esta en el aire o no
 
 	// ==================== START ====================
 	void Start()
@@ -24,7 +24,7 @@ public class Player_controler : MonoBehaviour
 	// ==================== UPDATE ====================
 	void Update()
 	{
-		anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));	// Accede al animador y cambia el Speed por la velocidad X actual
+		anim.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));					// Accede al animador y cambia el Speed por la velocidad X actual
 		anim.SetBool("Grounded", grounded);
 		
 		if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -48,11 +48,11 @@ public class Player_controler : MonoBehaviour
 
 		if (h > 0.1f)
 		{
-			transform.localScale = new Vector3(1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
+			transform.localScale = new Vector3(1f, 1f, 1f);					// Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
 		}
 		if (h < -0.1f)
 		{
-			transform.localScale = new Vector3(-1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
+			transform.localScale = new Vector3(-1f, 1f, 1f);				// Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
 		}
 		
 		if (rb2d.velocity.x > maxSpeed)

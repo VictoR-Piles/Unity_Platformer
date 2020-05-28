@@ -68,11 +68,11 @@ public class Player_controler : MonoBehaviour
 
 		if (h > 0.1f)
 		{
-			transform.localScale = new Vector3(1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
+			transform.localScale = new Vector3(1f, 1f, 1f);		            // Cambia la posicion a la que mira el jugador a DERECHA, modificando su valor de escala a POSITIVO
 		}
 		if (h < -0.1f)
 		{
-			transform.localScale = new Vector3(-1f, 1f, 1f);		// Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
+			transform.localScale = new Vector3(-1f, 1f, 1f);		        // Cambia la posicion a la que mira el jugador a IZQUIERDA, modificando su valor de escala a NEGATIVO
 		}
 		
 		if (rb2d.velocity.x > maxSpeed)

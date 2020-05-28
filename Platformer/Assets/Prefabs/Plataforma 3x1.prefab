@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 745827499124455959}
   m_Layer: 0
   m_Name: sprites_125
-  m_TagString: Platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 841857794347378265}
   m_Layer: 0
   m_Name: sprites_155
-  m_TagString: Platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6311470790753511247}
   m_Layer: 0
   m_Name: sprites_123
-  m_TagString: Platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

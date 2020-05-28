@@ -31,7 +31,7 @@ public class PlataformaTrampa : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Player")
 		{
-			Invoke("fall", fallDelay);							// Llama al metodo fall despues del delay (se puede ajustar desde Unity)
+			Invoke("fall", fallDelay);							            // Llama al metodo fall despues del delay (se puede ajustar desde Unity)
 		}
 	}
 
@@ -39,7 +39,7 @@ public class PlataformaTrampa : MonoBehaviour
 	{
 		rb2d.isKinematic = false;											// Cambioa el Rigidbody2D de la plataforma de 'Kinematic' a 'Dynamic', de esta manera se activa su gravedad
 		rb2d.freezeRotation = false;										// Permite que la plataforma rote y rebote
-		Invoke("respawn", (fallDelay + respawnDelay));	// Llama al metodo respawn despues del delay (se puede ajustar desde Unity)
+		Invoke("respawn", (fallDelay + respawnDelay));	                    // Llama al metodo respawn despues del delay (se puede ajustar desde Unity)
 	}
 
 	void respawn()
@@ -48,6 +48,6 @@ public class PlataformaTrampa : MonoBehaviour
 		rb2d.isKinematic = true;											// Cambia el Rigidbody2D de la plataforma de 'Dynamic' a 'Kinematic', de esta forma se desactiva la gravedad
 		rb2d.velocity = Vector3.zero;										// Cambia la velocidad de la plataforma a 0
 		rb2d.freezeRotation = true;											// Congela la rotacion
-		rb2d.SetRotation(0);											// Asegura que la paltaforma va a spawnear sin rotacion
+		rb2d.SetRotation(0);											    // Asegura que la paltaforma va a spawnear sin rotacion
 	}
 }

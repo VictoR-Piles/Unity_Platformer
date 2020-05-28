@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Permite que la camara siga a un objetivo
+ */
 public class CameraFollow : MonoBehaviour
 {
 	public GameObject target;												// Permite establecer un objetivo el cual la camara debe perseguir

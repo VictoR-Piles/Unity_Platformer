@@ -44,4 +44,16 @@ public class EnemyController : MonoBehaviour
 			}
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.gameObject.tag == "Player")
+		{
+			float yOffset = .22f;											// Hace que el enemigo se destruya solo si saltamos encima de el
+			if (transform.position.y + yOffset < col.transform.position.y)
+			{
+				Destroy(gameObject);										// Destruye el enemigo cuando lo matamos
+			}
+		}
+	}
 }

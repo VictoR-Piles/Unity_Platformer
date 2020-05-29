@@ -17,14 +17,17 @@ public class Player_controler : MonoBehaviour
 
 	private Rigidbody2D rb2d;
 	private Animator anim;
+	private SpriteRenderer spr;
 	private bool jump;														// Determinara si el Player esta en el aire o no
 	private bool doubleJump;												// Determina si se puede realizar un doble salto o no
+	private bool canMove = true;											// Determina si el Player puede moverse o no en un determinado momento
 
 	// ==================== START ====================
 	void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		spr = GetComponent<SpriteRenderer>();
 	}
 
 	// ==================== UPDATE ====================
@@ -64,6 +67,10 @@ public class Player_controler : MonoBehaviour
 		}
 		
 		float h = Input.GetAxis("Horizontal");        						// Permite el movimiento horizontal con las teclas (A, D) o las flechas
+		if (!canMove)
+		{
+			h = 0;															// Bloquea el movimiento del Player
+		}
 		rb2d.AddForce(Vector2.right * speed * h);
 
 		if (h > 0.1f)
@@ -96,5 +103,29 @@ public class Player_controler : MonoBehaviour
 	{
 		transform.position = new Vector3(-8, .5f, 0);				// Crea un 'checkpoint' y envia al Player al chechpoint si se sale de los límites de la camara
 		rb2d.velocity = new Vector2(0, 0);
+	}
+
+	public void enemyJump()													// Hace que el Player salte al matar un enemigo
+	{
+		jump = true;
+	}
+
+	public void enemyKnockBack(float enemyPosX)
+	{
+		jump = true;
+		
+		float side = Mathf.Sign(enemyPosX - transform.position.x);		// Mathf.Sign devuelve 1 si un numero es positivo o -1 si es negativo (su signo)
+		rb2d.AddForce(Vector2.left * side * jumpPower, ForceMode2D.Impulse);	// Impulsa el enemigo hacia la derecha o hacia a la izquierda, dependiendo de el valor de side
+
+		canMove = false;													// Bloquea el movimiento del 
+		
+		Invoke("enableMovement", .7f);					// Llama al metodo enableMovement desoues del delay
+		spr.color = Color.red;
+	}
+
+	void enableMovement()
+	{
+		canMove = true;														// Reactiva la posibilidad del movimiento
+		spr.color = Color.white;
 	}
 }

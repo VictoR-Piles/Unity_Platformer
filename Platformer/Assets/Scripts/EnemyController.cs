@@ -52,7 +52,12 @@ public class EnemyController : MonoBehaviour
 			float yOffset = .22f;											// Hace que el enemigo se destruya solo si saltamos encima de el
 			if (transform.position.y + yOffset < col.transform.position.y)
 			{
+				col.SendMessage("enemyJump");					// Llama al metodo 'enemyJump' del Player
 				Destroy(gameObject);										// Destruye el enemigo cuando lo matamos
+			}
+			else
+			{
+				col.SendMessage("enemyKnockBack", transform.position.x);	// Llama al metodo 'enemyKnockBack' del Player
 			}
 		}
 	}
